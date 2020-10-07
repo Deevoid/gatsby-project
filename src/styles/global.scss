@@ -1,4 +1,4 @@
-$font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+$font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 
 html,
 body {
@@ -6,7 +6,7 @@ body {
   padding: 0;
 }
 * {
-  margin-top: 0
+  margin-top: 0;
 }
 body.light {
   --primary-color: #381696;
@@ -34,9 +34,9 @@ body.dark {
   --featured-bg: #66578d;
   --featured-text: #fff;
   --secondary-color: #66578d;
-  --background: #0A041A;
-  --text-color: rgba(255,255,255,0.88);
-  --text-secondary-color: rgba(255,255,255,0.66);
+  --background: #0a041a;
+  --text-color: rgba(255, 255, 255, 0.88);
+  --text-secondary-color: rgba(255, 255, 255, 0.66);
   --site-header: var(--background);
   --card-bg: #181326;
   --card-bdr: #181326;
@@ -53,58 +53,179 @@ body.dark {
 /* System Fonts as used by Medium and WordPress */
 body {
   font-family: $font-family;
-  border-top: 10px solid var(--primary-color);
   background-color: var(--background);
   color: var(--text-color);
 }
 a {
+  background-color: transparent;
   color: var(--primary-color);
   text-decoration: none;
   &:hover {
-    text-decoration: underline;
+    text-decoration: none;
   }
 }
+ul {
+  padding: 0;
+  margin: 0 0 1.2em;
+}
+button {
+  display: inline-block;
+  color: #000;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  margin: 30px 0 0;
+  transition: all 0.2s ease-in-out;
+  font-size: 13px;
+}
+.container {
+  width: 80%;
+  margin: 20px auto;
+}
 .site-wrapper {
-  padding: 32px;
-  max-width: 1140px;
-  margin: 0 auto;
   img {
     max-width: 100%;
   }
+  header {
+    margin: 0 70px;
+  }
 }
 .navigation {
+  margin-left: auto;
   display: flex;
   align-items: center;
+  height: 100%;
   font-weight: 300;
   a {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 30px;
+    font-size: 15px;
     color: #888;
     text-decoration: none;
-    margin: 0 8px 0;
+    position: relative;
+    cursor: pointer;
+    color: var(--color-offBlack);
+    font-weight: 400;
+
+    &.about {
+      &.active {
+        &::after {
+          background-color: rgb(0, 156, 243);
+        }
+      }
+    }
+    &.insight {
+      &.active {
+        &::after {
+          background-color: rgb(255, 85, 25);
+        }
+      }
+    }
+    &.work {
+      &.active {
+        &::after {
+          background-color: rgb(20, 192, 77);
+        }
+      }
+    }
+    &.blog {
+      &.active {
+        &::after {
+          background-color: rgb(230, 12, 41);
+        }
+      }
+    }
+    &.join {
+      &.active {
+        &::after {
+          background-color: rgb(255, 191, 2);
+        }
+      }
+    }
+    &.contact {
+      &.active {
+        &::after {
+          background-color: rgb(97, 20, 204);
+        }
+      }
+    }
     &[aria-current] {
-      color: var(--primary-color);
-      font-weight: 700;
+      // color: var(--primary-color);
+      font-weight: 500;
+      &::after {
+        content: "";
+        position: absolute;
+        display: block;
+        transition: 0.2s ease-in-out;
+        top: 0;
+        left: 5px;
+        right: 5px;
+        height: 5px;
+        background-color: #ff5519;
+      }
     }
+    &::after {
+      content: "";
+      position: absolute;
+      display: block;
+      transition: 0.2s ease-in-out;
+      top: 0;
+      left: 5px;
+      right: 5px;
+      height: 0px;
+      background-color: rgba(0, 0, 0, 0.12);
+    }
+
     &:hover {
-      color: var(--primary-color);
-    }
-    &:last-child {
-      margin-right: 0;
+      &::after {
+        content: "";
+        position: absolute;
+        display: block;
+        transition: 0.2s ease-in-out;
+        top: 0;
+        left: 5px;
+        right: 5px;
+        height: 9px;
+        background-color: rgba(0, 0, 0, 0.12);
+      }
     }
   }
 }
 .site-header {
   display: flex;
   justify-content: space-between;
-  padding: 20px 0;
   background: var(--site-header);
-  margin-bottom: 32px;
+  // margin-bottom: 32px;
+  height: 80px;
   align-items: center;
+  .searchButtons {
+    margin-left: 30px;
+    .searchOpen {
+      margin: 0;
+      outline: none;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      svg {
+        height: 16px;
+        width: 16px;
+        vertical-align: middle;
+      }
+    }
+  }
 }
 .site-title a {
   color: var(--primary-color);
   text-decoration: none;
   font-weight: 900;
   text-transform: uppercase;
+  svg {
+    fill: black;
+    height: 26px;
+    width: 90px;
+  }
 }
 .hero-header {
   padding: 0 0 64px;
@@ -115,33 +236,33 @@ a {
   font-weight: 900;
   margin-bottom: 0.5rem;
 }
-.button {
-  padding: 18px 27px;
-  display: inline-block;
-  background: var(--btn-bg);
-  border: 1px solid var(--btn-bdr);
-  border-radius: 9px;
-  text-decoration: none;
-  color: var(--btn-text-color);
-  font-size: 16px;
-  font-weight: 400;
-  margin: 0 20px 0 0;
-  transition: background-color .3s linear;
-  &.-primary {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-    color: var(--primary-text-color);
-    &:hover {
-      background-color: var(--secondary-color);
-      color: var(--primary-text-color);
-      text-decoration: none;
-    }
-  }
-  &:hover {
-    background-color: var(--btn-hover-bg);
-    color: var(--btn-hover-text-color);
-  }
-}
+// .button {
+//   padding: 18px 27px;
+//   display: inline-block;
+//   background: var(--btn-bg);
+//   border: 1px solid var(--btn-bdr);
+//   border-radius: 9px;
+//   text-decoration: none;
+//   color: var(--btn-text-color);
+//   font-size: 16px;
+//   font-weight: 400;
+//   margin: 0 20px 0 0;
+//   transition: background-color 0.3s linear;
+//   &.-primary {
+//     background-color: var(--primary-color);
+//     border-color: var(--primary-color);
+//     color: var(--primary-text-color);
+//     &:hover {
+//       background-color: var(--secondary-color);
+//       color: var(--primary-text-color);
+//       text-decoration: none;
+//     }
+//   }
+//   &:hover {
+//     background-color: var(--btn-hover-bg);
+//     color: var(--btn-hover-text-color);
+//   }
+// }
 .primary-content {
   font-size: 18px;
   margin-bottom: 32px;
@@ -150,7 +271,7 @@ a {
 }
 .post {
   padding: 0;
-  background:var(--background);
+  background: var(--background);
   color: var(--text-color);
   line-height: 1.5;
   > .blog-post-content {
@@ -171,7 +292,6 @@ a {
     margin-bottom: 32px;
     text-align: center;
   }
-  
 }
 .post-thumbnail {
   text-align: center;
@@ -191,7 +311,7 @@ a {
   overflow: hidden;
   &:before {
     content: "";
-    background: rgba(0,0,0,0.4);
+    background: rgba(0, 0, 0, 0.4);
     position: absolute;
     top: 0;
     left: 0;
@@ -204,7 +324,7 @@ a {
     z-index: 2;
   }
   .post-meta {
-    color: rgba(255,255,255,0.8);
+    color: rgba(255, 255, 255, 0.8);
     margin-bottom: 0;
   }
 }
@@ -252,12 +372,12 @@ a {
   color: var(--text-secondary-color);
 }
 .site-footer {
-  text-align: center;
-  margin: 90px 0 16px;
-  color: #666;
-  a {
-    font-weight: 700;
-  }
+  // text-align: center;
+  // margin: 90px 0 16px;
+  // color: #666;
+  // a {
+  //   font-weight: 700;
+  // }
 }
 .form-container {
   background-color: var(--contact-bg);
@@ -269,8 +389,8 @@ a {
     margin-bottom: 0.5rem;
     color: var(--text-secondary-color);
   }
-  input[type=text],
-  input[type=email],
+  input[type="text"],
+  input[type="email"],
   textarea {
     appearance: none;
     border: 1px solid var(--card-shadow);
@@ -298,14 +418,12 @@ a {
   }
 }
 /* Portrait and Landscape */
-@media only screen 
-and (min-width: 768px) {
-.grids {
-  grid-template-columns: 1fr 1fr;
+@media only screen and (min-width: 768px) {
+  .grids {
+    grid-template-columns: 1fr 1fr;
+  }
 }
-}
-@media only screen 
-  and (min-width: 1024px) {
+@media only screen and (min-width: 1024px) {
   .grids {
     grid-template-columns: 1fr 1fr 1fr;
   }
@@ -315,7 +433,6 @@ and (min-width: 768px) {
     grid-gap: 64px;
   }
 }
-
 
 // theme-changer
 .theme-changer {
@@ -341,25 +458,16 @@ body.light {
   box-sizing: border-box;
   position: relative;
   display: block;
-  transform: scale(var(--ggs,1));
+  transform: scale(var(--ggs, 1));
   width: 24px;
   height: 24px;
-  background:
-    linear-gradient(to bottom,
-        currentColor 4px,transparent 0)
-        no-repeat 5px -6px/2px 6px,
-    linear-gradient(to bottom,
-        currentColor 4px,transparent 0)
-        no-repeat 5px 14px/2px 6px,
-    linear-gradient(to bottom,
-        currentColor 4px,transparent 0)
-        no-repeat -8px 5px/6px 2px,
-    linear-gradient(to bottom,
-        currentColor 4px,transparent 0)
-        no-repeat 14px 5px/6px 2px;
+  background: linear-gradient(to bottom, currentColor 4px, transparent 0) no-repeat 5px -6px/2px 6px,
+    linear-gradient(to bottom, currentColor 4px, transparent 0) no-repeat 5px 14px/2px 6px,
+    linear-gradient(to bottom, currentColor 4px, transparent 0) no-repeat -8px 5px/6px 2px,
+    linear-gradient(to bottom, currentColor 4px, transparent 0) no-repeat 14px 5px/6px 2px;
   border-radius: 100px;
   box-shadow: inset 0 0 0 2px;
-  border: 6px solid transparent
+  border: 6px solid transparent;
 }
 .gg-sun::after,
 .gg-sun::before {
@@ -372,36 +480,36 @@ body.light {
   border-right: 4px solid;
   border-left: 4px solid;
   left: -6px;
-  top: 5px
+  top: 5px;
 }
 .gg-sun::before {
-  transform: rotate(-45deg)
+  transform: rotate(-45deg);
 }
 .gg-sun::after {
-  transform: rotate(45deg)
+  transform: rotate(45deg);
 }
 .gg-moon,
 .gg-moon::after {
-    display: block;
-    box-sizing: border-box;
-    border-radius: 50%
+  display: block;
+  box-sizing: border-box;
+  border-radius: 50%;
 }
 .gg-moon {
-    overflow: hidden;
-    position: relative;
-    transform: rotate(-135deg) scale(var(--ggs,1));
-    width: 20px;
-    height: 20px;
-    border: 2px solid;
-    border-bottom-color: transparent
+  overflow: hidden;
+  position: relative;
+  transform: rotate(-135deg) scale(var(--ggs, 1));
+  width: 20px;
+  height: 20px;
+  border: 2px solid;
+  border-bottom-color: transparent;
 }
 .gg-moon::after {
-    content: "";
-    position: absolute;
-    width: 12px;
-    height: 18px;
-    border: 2px solid transparent;
-    box-shadow: 0 0 0 2px;
-    top: 8px;
-    left: 2px
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 18px;
+  border: 2px solid transparent;
+  box-shadow: 0 0 0 2px;
+  top: 8px;
+  left: 2px;
 }
